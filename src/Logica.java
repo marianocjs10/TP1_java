@@ -106,7 +106,7 @@ public class Logica {
         int num;
         do {
             System.out.println("Ingrese un numero para comprobar si es mayor o igual a 0.");
-            num = Integer.parseInt(sc.nextLine());
+            num = sc.nextInt();
         } while (num < 0);
         if(num!=0) {
             System.out.println("El numero ingresado: " + num + " es mayor que 0.");
@@ -116,22 +116,23 @@ public class Logica {
     }
 
     public static void contrasena(){
+        sc.nextLine();
         String contrasenaCorrecta = "contraseña", contrasena;
         int intentos = 3;
-        boolean acertado = true;
+        boolean acertado = false;
         System.out.println("Bienvenido! Tienes 3 intentos para acceder.");
-        while (intentos > 0 && acertado) {
+        while (intentos > 0 && !acertado) {
             System.out.print("Ingrese la contraseña: ");
             contrasena = sc.nextLine();
             intentos--;
             if (contrasena.equalsIgnoreCase(contrasenaCorrecta)) {
                 System.out.println("Acceso correcto!");
-                acertado = false;
+                acertado = true;
             } else {
                 System.out.println("Contraseña incorrecta! Te quedan " + intentos + " intentos");
             }
         }
-        if (acertado) {
+        if (!acertado) {
             System.out.println("Lo siento, te quedaste sin intentos!");
         }
     }
@@ -178,13 +179,15 @@ public class Logica {
         while (i <= num) {
             if (num % i == 0) {
                 divisores++;
+                if(divisores > 2)
+                    break;
             }
             i++;
         }
-        if (divisores == 2) {  // Evalúo si el num tuvo 2 divisiones (1 y si mismo)
-            System.out.println("El número ingresado es primo");
+        if (divisores > 2) {  // Evalúo si el num tuvo 2 divisiones (1 y si mismo)
+            System.out.println("El número ingresado no es primo");
         } else {
-            System.out.println("El número ingresado NO es primo");
+            System.out.println("El número ingresado es primo");
         }
     }
 
